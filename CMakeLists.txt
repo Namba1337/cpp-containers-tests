@@ -3,17 +3,17 @@ project(ContainersTests)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(include)
-
+# Подключаем GoogleTest как подмодуль
 add_subdirectory(tests/GoogleTest)
 
-add_executable(
-    ContainersTests
-    tests/test_main.cpp
+include_directories(
+    include
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/GoogleTest/googletest/include
 )
 
-target_link_libraries(
-    ContainersTests
-    GTest::GTest
-    GTest::Main
+add_executable(ContainersTests tests/test_main.cpp)
+
+target_link_libraries(ContainersTests 
+    GTest::gtest_main
+    GTest::gmock
 )
