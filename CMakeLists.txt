@@ -1,25 +1,26 @@
 cmake_minimum_required(VERSION 3.14)
 project(ContainersTests)
 
-set(CMAKE_CXX_STANDARD 17)
+# Явно задаем тип runtime библиотек
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+
+if(MSVC)
+    # Для Visual Studio
+    add_compile_options(/MDd)  # Используем динамическую runtime библиотеку
+else()
+    set(CMAKE_CXX_STANDARD 17)
+endif()
 
 # Подключаем GoogleTest
 add_subdirectory(tests/GoogleTest EXCLUDE_FROM_ALL)
 
-# Указываем компилятору искать заголовки в include/
-include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/tests/GoogleTest/googletest/include
-)
+include_directories(include)
 
-add_executable(
-    ContainersTestsExecutable
-    tests/test_main.cpp
-)
+# Исполняемый файл
+add_executable(ContainersTestsExecutable tests/test_main.cpp)
 
-target_link_libraries(
-    ContainersTestsExecutable
+# Линковка
+target_link_libraries(ContainersTestsExecutable 
     gtest
     gtest_main
-    pthread
 )
