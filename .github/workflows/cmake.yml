@@ -10,6 +10,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: "recursive"  # Критически важно для подмодулей!
+        fetch-depth: 0  # Важно для полной истории подмодулей
 
     - name: Install dependencies
       run: |
