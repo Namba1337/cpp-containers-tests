@@ -9,8 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: "recursive"  # Критически важно для подмодулей!
-        fetch-depth: 0  # Важно для полной истории подмодулей
+        submodules: "recursive"  # Обязательно!
 
     - name: Install dependencies
       run: |
@@ -27,4 +26,4 @@ jobs:
     - name: Run tests
       run: |
         cd build
-        ./ContainersTestsExecutable  # Новое имя исполняемого файла
+        ./ContainersTestsExecutable
