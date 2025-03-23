@@ -7,5 +7,5 @@
 
 - ## 🛠 Build Instructions
 ```bash
-# Клонировать с подмодулями
+
 git clone --recursive https://github.com/Namba1337/cpp-containers-tests.git
