@@ -7,23 +7,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
       with:
-        submodules: recursive  # Критически важный параметр!
+        submodules: "recursive"  # Важно для подмодулей!
 
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake libgtest-dev
+        sudo apt-get install -y cmake build-essential
 
-    - name: Configure CMake
+    - name: Configure and Build
       run: |
-        cmake -B build -S . -DCMAKE_BUILD_TYPE=Debug
-
-    - name: Build
-      run: |
-        cmake --build build
+        mkdir -p build
+        cd build
+        cmake ..
+        make
 
     - name: Run tests
-      working-directory: ./build
-      run: ./ContainersTests
+      run: |
+        cd build
+        ./ContainersTests
