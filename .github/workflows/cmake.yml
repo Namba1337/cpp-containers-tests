@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
-        submodules: "recursive"  # Важно для подмодулей!
+        submodules: "recursive"  # Критически важно для подмодулей!
 
     - name: Install dependencies
       run: |
@@ -26,4 +26,4 @@ jobs:
     - name: Run tests
       run: |
         cd build
-        ./ContainersTests
+        ./ContainersTestsExecutable  # Новое имя исполняемого файла

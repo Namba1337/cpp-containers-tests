@@ -3,21 +3,19 @@ project(ContainersTests)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Подключаем GoogleTest как подмодуль
-add_subdirectory(tests/GoogleTest)
+# Подключаем GoogleTest как подмодуль (исправленный путь)
+add_subdirectory(tests/GoogleTest EXCLUDE_FROM_ALL)
 
-# Основные файлы проекта
 include_directories(include)
 
-# Исполняемый файл с тестами
+# Изменим имя исполняемого файла, чтобы избежать конфликта
 add_executable(
-    ContainersTests
+    ContainersTestsExecutable  # Новое уникальное имя
     tests/test_main.cpp
 )
 
-# Линковка библиотек
 target_link_libraries(
-    ContainersTests
+    ContainersTestsExecutable
     gtest
     gtest_main
 )
