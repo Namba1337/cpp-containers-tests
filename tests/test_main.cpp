@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include <stdexcept>
-#include "../include/Queue.hpp"
-#include "../include/Heap.hpp"
-#include "../include/BinaryTree.hpp"
+#include "Queue.hpp"
+#include "Heap.hpp"
+#include "BinaryTree.hpp"
 
 // ==================== Queue Tests ====================
 TEST(QueueTest, InitiallyEmpty) {
